@@ -16,7 +16,11 @@
     </header>
     <section id="controls">
         <div class="search-wrapper">
-            <label for="search">Search for a country...</label>
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
             <input type="text" id="search" placeholder="Search for a country...">
         </div>
 
@@ -34,57 +38,13 @@
     <main>
         <div class="container">
             <section id="countries-grid">
-                <div class="country-card">
-                    <div class="flag">
-                        <img src="https://placehold.co/300x200" alt="Country Flag">
-                    </div>
-                    <div class="card-details">
-                        <h3>Country Name</h3>
-                        <p><b>Population:</b> 12,345,678</p>
-                        <p><b>Region:</b> Asia</p>
-                        <p><b>Capital:</b> Example City</p>
-                    </div>
-                </div>
 
-                <div class="country-card">
-                    <div class="flag">
-                        <img src="https://placehold.co/300x200" alt="Country Flag">
-                    </div>
-                    <div class="card-details">
-                        <h3>Country Name</h3>
-                        <p><b>Population:</b> 23,456,789</p>
-                        <p><b>Region:</b> Europe</p>
-                        <p><b>Capital:</b> Example City</p>
-                    </div>
-                </div>
-
-                <div class="country-card">
-                    <div class="flag">
-                        <img src="https://placehold.co/300x200" alt="Country Flag">
-                    </div>
-                    <div class="card-details">
-                        <h3>Country Name</h3>
-                        <p><b>Population:</b> 34,567,890</p>
-                        <p><b>Region:</b> Africa</p>
-                        <p><b>Capital:</b> Example City</p>
-                    </div>
-                </div>
-
-                <div class="country-card">
-                    <div class="flag">
-                        <img src="https://placehold.co/300x200" alt="Country Flag">
-                    </div>
-                    <div class="card-details">
-                        <h3>Country Name</h3>
-                        <p><b>Population:</b> 23,456,789</p>
-                        <p><b>Region:</b> Europe</p>
-                        <p><b>Capital:</b> Example City</p>
-                    </div>
-                </div>
             </section>
         </div>
     </main>
     <script src="js/theme.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/home.js"></script>
 </body>
 
 </html>
