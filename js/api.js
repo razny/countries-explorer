@@ -1,6 +1,6 @@
 async function getAllCountries() {
   const url =
-    "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags,cca3"; // Added cca3
+    "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags,cca3";
 
   const response = await fetch(url);
   if (!response.ok) {

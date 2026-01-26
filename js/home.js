@@ -38,7 +38,37 @@ function renderCountries(countriesArray) {
 }
 
 // search and region filtering
-function setupFilters() {}
+function setupFilters() {
+  const searchQuery = document.getElementById("search");
+  const regionSelect = document.getElementById("filters");
+
+  function applyFilters() {
+    const searchValue = searchQuery.value.trim().toLowerCase();
+    const regionValue = regionSelect.value.trim().toLowerCase();
+
+    if (searchValue === "" && regionValue === "all") {
+      renderCountries(allCountries);
+      return;
+    }
+
+    let matching = [];
+    if (regionValue === "all") {
+      matching = allCountries.filter((country) =>
+        country.name.common.toLowerCase().includes(searchValue),
+      );
+    } else {
+      matching = allCountries.filter(
+        (country) =>
+          country.name.common.toLowerCase().includes(searchValue) &&
+          country.region.toLowerCase() === regionValue,
+      );
+    }
+    renderCountries(matching);
+  }
+
+  searchQuery.addEventListener("input", applyFilters);
+  regionSelect.addEventListener("change", applyFilters);
+}
 
 // navigate to detail page on card click
 function setupCardClicks() {

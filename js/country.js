@@ -53,7 +53,14 @@ function renderCountryDetails(country) {
 }
 
 // handle border country clicks
-function setupBorderClicks() {}
+function setupBorderClicks() {
+  const borderBtns = document.querySelectorAll(".border-btn");
+  borderBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      window.location.href = `country.html?code=${btn.dataset.name}`;
+    });
+  });
+}
 
 // go back to home page
 function setupBackButton() {
