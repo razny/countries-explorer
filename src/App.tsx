@@ -5,7 +5,7 @@ import CountryPage from "./pages/CountryPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/countries-explorer">
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
