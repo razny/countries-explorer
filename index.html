@@ -1,51 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countries</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+  <title>Where in the world?</title>
 </head>
 
 <body>
-    <header>
-        <h1>Where in the world?</h1>
-        <button id="toggle-theme">Dark Mode</button>
-    </header>
-    <section id="controls">
-        <div class="search-wrapper">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <input type="text" id="search" placeholder="Search for a country...">
-        </div>
-
-        <div class="filter-wrapper">
-            <label for="filters">Filter by Region</label>
-            <select id="filters">
-                <option value="all">All</option>
-                <option value="africa">Africa</option>
-                <option value="americas">Americas</option>
-                <option value="asia">Asia</option>
-                <option value="europe">Europe</option>
-                <option value="oceania">Oceania</option>
-            </select>
-        </div>
-    </section>
-    <main>
-        <div class="container">
-            <section id="countries-grid">
-
-            </section>
-        </div>
-    </main>
-    <script src="js/theme.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/home.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
