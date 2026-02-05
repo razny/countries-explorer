@@ -112,11 +112,17 @@ header h1 {
 }
 
 #controls {
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.controls-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  padding: 0 5vw 2rem;
   flex-wrap: wrap;
 }
 
@@ -179,7 +185,7 @@ header h1 {
 }
 
 .results-count {
-  padding: 0 5vw 1rem;
+  padding-bottom: 1rem;
   font-size: 0.95rem;
   color: var(--input-color);
   font-weight: 600;
@@ -190,7 +196,8 @@ header h1 {
   font-style: italic;
 }
 
-#filters {
+#filters,
+#sort {
   width: 100%;
   padding: 1.1rem 3rem 1.1rem 1.5rem;
   background-color: var(--element-bg);
@@ -208,29 +215,43 @@ header h1 {
   transition: var(--transition);
 }
 
-#filters:hover {
+#filters:hover,
+#sort:hover {
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+#filters:focus,
+#sort:focus {
+  outline: none;
+  border-color: var(--input-color);
   box-shadow: var(--shadow-md);
 }
 
 .region-filters {
-  width: 100%;
-  padding: 0 5vw;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
+  padding: 1.2rem 1.5rem;
+  background-color: var(--element-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
 }
 
 .region-label {
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--text-color);
+  white-space: nowrap;
 }
 
 .region-checkboxes {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
+  flex: 1;
 }
 
 .region-checkbox {
@@ -241,17 +262,26 @@ header h1 {
   font-size: 0.9rem;
   color: var(--text-color);
   user-select: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.region-checkbox:hover {
+  background-color: var(--bg-color);
 }
 
 .region-checkbox input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: var(--text-color);
+  accent-color: var(--input-color);
+  border-radius: 4px;
+  transition: var(--transition);
 }
 
-.region-checkbox:hover {
-  opacity: 0.8;
+.region-checkbox input[type="checkbox"]:checked {
+  accent-color: var(--text-color);
 }
 
 #countries-grid {
@@ -460,30 +490,35 @@ b {
   }
 
   .results-count {
-    padding: 0 4vw 0.75rem;
+    padding-bottom: 0.75rem;
     font-size: 0.85rem;
   }
 
   .region-filters {
-    padding: 1rem 4vw;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .region-checkboxes {
-    gap: 1rem;
+    gap: 0.75rem;
+    width: 100%;
   }
 
   .region-checkbox {
     font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
   }
 
   #controls {
+    padding-bottom: 1.5rem;
+  }
+
+  .controls-top {
     flex-direction: column;
     align-items: stretch;
     gap: 1.5rem;
-    padding: 0 4vw 1.5rem;
   }
 
   .filters-group {
@@ -499,20 +534,20 @@ b {
     padding: 1rem 1rem 1rem 48px;
   }
 
-  #filters {
+  #filters,
+  #sort {
     padding: 1rem 2.5rem 1rem 1rem;
   }
 
   #countries-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 1.5rem 4vw 3rem;
+    padding: 1.5rem 0 3rem;
   }
 
   #country-info {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 0 4vw;
   }
 
   .country-details h2 {
@@ -525,7 +560,7 @@ b {
   }
 
   #go-back {
-    margin-left: 4vw;
+    margin-bottom: 2rem;
   }
 }
 
