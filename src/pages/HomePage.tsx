@@ -7,7 +7,8 @@ import SearchFilters from "../components/SearchFilters";
 export default function HomePage() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("all");
+  const [regions, setRegions] = useState<string[]>([]);
+  const [sort, setSort] = useState("name-asc");
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -20,28 +21,51 @@ export default function HomePage() {
       .catch(() => setIsLoading(false));
   }, []);
 
-  const filteredCountries = countries.filter((country) => {
-    const matchesSearch = country.name.common
-      .toLowerCase()
-      .includes(search.toLowerCase());
-    const matchesRegion =
-      region === "all" || country.region.toLowerCase() === region;
-    return matchesSearch && matchesRegion;
-  });
+  const filteredCountries = countries
+    .filter((country) => {
+      const matchesSearch = country.name.common
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const matchesRegion =
+        regions.length === 0 || regions.includes(country.region);
+      return matchesSearch && matchesRegion;
+    })
+    .sort((a, b) => {
+      switch (sort) {
+        case "name-asc":
+          return a.name.common.localeCompare(b.name.common);
+        case "name-desc":
+          return b.name.common.localeCompare(a.name.common);
+        case "population-desc":
+          return b.population - a.population;
+        case "population-asc":
+          return a.population - b.population;
+        default:
+          return 0;
+      }
+    });
 
   return (
     <>
       <SearchFilters
         search={search}
-        region={region}
+        regions={regions}
+        sort={sort}
         onSearchChange={setSearch}
-        onRegionChange={setRegion}
+        onRegionsChange={setRegions}
+        onSortChange={setSort}
       />
       <main>
         <div className="container">
           {!isLoading && (
             <div className="results-count">
               Showing {filteredCountries.length} of {countries.length} countries
+              {regions.length > 0 && (
+                <span className="active-filters">
+                  {" "}
+                  • Filtered by: {regions.join(", ")}
+                </span>
+              )}
             </div>
           )}
           <section id="countries-grid">

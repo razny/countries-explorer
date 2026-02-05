@@ -1,16 +1,30 @@
 interface SearchFiltersProps {
   search: string;
-  region: string;
+  regions: string[];
+  sort: string;
   onSearchChange: (value: string) => void;
-  onRegionChange: (value: string) => void;
+  onRegionsChange: (values: string[]) => void;
+  onSortChange: (value: string) => void;
 }
+
+const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export default function SearchFilters({
   search,
-  region,
+  regions,
+  sort,
   onSearchChange,
-  onRegionChange,
+  onRegionsChange,
+  onSortChange,
 }: SearchFiltersProps) {
+  const toggleRegion = (region: string) => {
+    if (regions.includes(region)) {
+      onRegionsChange(regions.filter((r) => r !== region));
+    } else {
+      onRegionsChange([...regions, region]);
+    }
+  };
+
   return (
     <section id="controls">
       <div className="search-wrapper">
@@ -35,19 +49,35 @@ export default function SearchFilters({
         />
       </div>
 
-      <div className="filter-wrapper">
-        <label htmlFor="filters">Filter by Region</label>
-        <select
-          id="filters"
-          value={region}
-          onChange={(e) => onRegionChange(e.target.value)}>
-          <option value="all">All</option>
-          <option value="africa">Africa</option>
-          <option value="americas">Americas</option>
-          <option value="asia">Asia</option>
-          <option value="europe">Europe</option>
-          <option value="oceania">Oceania</option>
-        </select>
+      <div className="filters-group">
+        <div className="filter-wrapper">
+          <label htmlFor="sort">Sort By</label>
+          <select
+            id="sort"
+            value={sort}
+            onChange={(e) => onSortChange(e.target.value)}>
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="population-desc">Population (High-Low)</option>
+            <option value="population-asc">Population (Low-High)</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="region-filters">
+        <span className="region-label">Regions:</span>
+        <div className="region-checkboxes">
+          {REGIONS.map((region) => (
+            <label key={region} className="region-checkbox">
+              <input
+                type="checkbox"
+                checked={regions.includes(region)}
+                onChange={() => toggleRegion(region)}
+              />
+              <span>{region}</span>
+            </label>
+          ))}
+        </div>
       </div>
     </section>
   );
