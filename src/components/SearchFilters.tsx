@@ -7,7 +7,14 @@ interface SearchFiltersProps {
   onSortChange: (value: string) => void;
 }
 
-const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+const REGIONS = [
+  "Africa",
+  "Americas",
+  "Antarctic",
+  "Asia",
+  "Europe",
+  "Oceania",
+];
 
 export default function SearchFilters({
   search,

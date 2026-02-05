@@ -36,8 +36,8 @@ body {
   background-color: var(--bg-color);
   min-height: 100vh;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .container {
@@ -83,7 +83,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: var(--transition);
+  transition: background-color 0.2s ease;
 }
 
 header h1 {
