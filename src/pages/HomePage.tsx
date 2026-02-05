@@ -39,6 +39,11 @@ export default function HomePage() {
       />
       <main>
         <div className="container">
+          {!isLoading && (
+            <div className="results-count">
+              Showing {filteredCountries.length} of {countries.length} countries
+            </div>
+          )}
           <section id="countries-grid">
             {isLoading ? (
               <div className="loading-spinner">

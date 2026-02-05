@@ -193,6 +193,13 @@ header h1 {
   border-width: 0;
 }
 
+.results-count {
+  padding: 0 5vw 1rem;
+  font-size: 0.95rem;
+  color: var(--input-color);
+  font-weight: 600;
+}
+
 #filters {
   width: 100%;
   padding: 1.1rem 3rem 1.1rem 1.5rem;
@@ -419,6 +426,11 @@ b {
   #toggle-theme {
     font-size: 0.85rem;
     padding: 0.5rem 1rem;
+  }
+
+  .results-count {
+    padding: 0 4vw 0.75rem;
+    font-size: 0.85rem;
   }
 
   #controls {
