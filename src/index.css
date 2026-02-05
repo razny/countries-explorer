@@ -19,6 +19,17 @@ body.dark {
   --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
+html.dark,
+html.dark body {
+  --bg-color: hsl(207, 26%, 17%);
+  --text-color: hsl(0, 0%, 100%);
+  --element-bg: hsl(209, 23%, 22%);
+  --input-color: hsl(0, 0%, 80%);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
 * {
   margin: 0;
   padding: 0;
