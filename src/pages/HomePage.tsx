@@ -16,6 +16,14 @@ export default function HomePage() {
   const regions = searchParams.get("regions")?.split(",").filter(Boolean) || [];
   const sort = searchParams.get("sort") || "name-asc";
 
+  // local state for immediate input updates
+  const [localSearch, setLocalSearch] = useState(search);
+
+  // sync local state with URL params when URL changes
+  useEffect(() => {
+    setLocalSearch(search);
+  }, [search]);
+
   useEffect(() => {
     getAllCountries()
       .then((data) => {
@@ -53,15 +61,18 @@ export default function HomePage() {
   };
 
   const handleSearchChange = (value: string) => {
+    // update local state immediately for smooth typing
+    setLocalSearch(value);
+
     // clear existing timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
 
-    // set new timer
+    // debounce the URL update
     debounceTimerRef.current = setTimeout(() => {
       updateSearchParams("search", value);
-    }, 500);
+    }, 300);
   };
 
   const filteredCountries = countries
@@ -91,7 +102,7 @@ export default function HomePage() {
   return (
     <>
       <SearchFilters
-        search={search}
+        search={localSearch}
         regions={regions}
         sort={sort}
         onSearchChange={handleSearchChange}
