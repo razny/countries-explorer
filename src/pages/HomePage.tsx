@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getAllCountries, type Country } from "../services/api";
 import CountryCard from "../components/CountryCard";
@@ -9,8 +9,9 @@ export default function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const debounceTimerRef = useRef<number>();
 
-  // Read initial values from URL parameters
+  // read initial values from URL parameters
   const search = searchParams.get("search") || "";
   const regions = searchParams.get("regions")?.split(",").filter(Boolean) || [];
   const sort = searchParams.get("sort") || "name-asc";
@@ -22,6 +23,15 @@ export default function HomePage() {
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
+  }, []);
+
+  // cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
   }, []);
 
   const updateSearchParams = (key: string, value: string | string[]) => {
@@ -40,6 +50,18 @@ export default function HomePage() {
     }
 
     setSearchParams(newParams, { replace: true });
+  };
+
+  const handleSearchChange = (value: string) => {
+    // clear existing timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // set new timer
+    debounceTimerRef.current = setTimeout(() => {
+      updateSearchParams("search", value);
+    }, 500);
   };
 
   const filteredCountries = countries
@@ -72,7 +94,7 @@ export default function HomePage() {
         search={search}
         regions={regions}
         sort={sort}
-        onSearchChange={(value) => updateSearchParams("search", value)}
+        onSearchChange={handleSearchChange}
         onRegionsChange={(value) => updateSearchParams("regions", value)}
         onSortChange={(value) => updateSearchParams("sort", value)}
       />
