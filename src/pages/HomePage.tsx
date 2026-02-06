@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getAllCountries, type Country } from "../services/api";
 import CountryCard from "../components/CountryCard";
 import SearchFilters from "../components/SearchFilters";
 
 export default function HomePage() {
   const [countries, setCountries] = useState<Country[]>([]);
-  const [search, setSearch] = useState("");
-  const [regions, setRegions] = useState<string[]>([]);
-  const [sort, setSort] = useState("name-asc");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Read initial values from URL parameters
+  const search = searchParams.get("search") || "";
+  const regions = searchParams.get("regions")?.split(",").filter(Boolean) || [];
+  const sort = searchParams.get("sort") || "name-asc";
 
   useEffect(() => {
     getAllCountries()
@@ -20,6 +23,24 @@ export default function HomePage() {
       })
       .catch(() => setIsLoading(false));
   }, []);
+
+  const updateSearchParams = (key: string, value: string | string[]) => {
+    const newParams = new URLSearchParams(searchParams);
+
+    if (Array.isArray(value)) {
+      if (value.length > 0) {
+        newParams.set(key, value.join(","));
+      } else {
+        newParams.delete(key);
+      }
+    } else if (value) {
+      newParams.set(key, value);
+    } else {
+      newParams.delete(key);
+    }
+
+    setSearchParams(newParams, { replace: true });
+  };
 
   const filteredCountries = countries
     .filter((country) => {
@@ -51,9 +72,9 @@ export default function HomePage() {
         search={search}
         regions={regions}
         sort={sort}
-        onSearchChange={setSearch}
-        onRegionsChange={setRegions}
-        onSortChange={setSort}
+        onSearchChange={(value) => updateSearchParams("search", value)}
+        onRegionsChange={(value) => updateSearchParams("regions", value)}
+        onSortChange={(value) => updateSearchParams("sort", value)}
       />
       <main>
         <div className="container">
