@@ -27,7 +27,7 @@ export default function CountryPage() {
     return (
       <main>
         <div className="container">
-          <button id="go-back" onClick={() => navigate("/")}>
+          <button id="go-back" onClick={() => navigate(-1)}>
             ← Back
           </button>
           <p style={{ padding: "2rem 0", fontSize: "1.2rem" }}>
@@ -42,7 +42,7 @@ export default function CountryPage() {
     return (
       <main>
         <div className="container">
-          <button id="go-back" onClick={() => navigate("/")}>
+          <button id="go-back" onClick={() => navigate(-1)}>
             ← Back
           </button>
           <div className="loading-spinner">
@@ -56,7 +56,7 @@ export default function CountryPage() {
   return (
     <main>
       <div className="container">
-        <button id="go-back" onClick={() => navigate("/")}>
+        <button id="go-back" onClick={() => navigate(-1)}>
           ← Back
         </button>
         <section id="country-info">
