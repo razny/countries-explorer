@@ -1,42 +1,62 @@
-# REST Countries Explorer
+# Where in the World?
 
-A React application for browsing country data from the REST Countries API with search, filtering, and detailed views.
+A modern React app for exploring countries with interactive features including search, comparison, and quiz modes.
 
-**Live Demo:** https://razny.github.io/countries-explorer/
-
-Inspired by the [REST Countries API challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca) from Frontend Mentor.
+**[Live Demo](https://razny.github.io/countries-explorer/)**
 
 ## Features
 
-- Browse all countries with flags, population, region, and capital
-- Search countries by name
-- Filter by region (Africa, Americas, Asia, Europe, Oceania)
-- View detailed country information
-- Navigate between bordering countries
-- Dark/light theme toggle with persistent storage
-- Responsive design
+**Browse Countries**
+
+- Search by name with live results
+- Multi-region filtering
+- Sort by name or population
+- Detailed country pages with border navigation
+
+**Compare Mode**
+
+- Select up to 4 countries for side-by-side comparison
+- Visual stats with progress bars
+- Shareable comparison URLs
+
+**Quiz Mode**
+
+- Three quiz types: flags, capitals, and regions
+- Customizable question count (5-20)
+- High score tracking with percentages
+- Instant answer feedback
+
+**User Experience**
+
+- Dark/light theme toggle
+- Fully responsive design
+- URL-based filter persistence
 - API response caching
 
 ## Tech Stack
 
-- React 18 with TypeScript
-- React Router DOM
+- React 18 + TypeScript
+- React Router v6
 - Vite
 - REST Countries API v3.1
+- LocalStorage for persistence
 
-## Getting Started
+## Quick Start
 
 ```sh
-# Install dependencies
+# Install
 npm install
 
-# Start development server
+# Development
 npm run dev
 
-# Build for production
+# Build
 npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
 ```
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License - see [LICENSE](LICENSE) file
