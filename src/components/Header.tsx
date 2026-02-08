@@ -31,6 +31,11 @@ export default function Header() {
             className={location.pathname === "/compare" ? "active" : ""}>
             Compare
           </Link>
+          <Link
+            to="/quiz"
+            className={location.pathname === "/quiz" ? "active" : ""}>
+            Quiz
+          </Link>
         </nav>
       </div>
       <button id="toggle-theme" onClick={toggleTheme}>
